@@ -10,11 +10,6 @@ public class JavatestApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JavatestApplication.class, args);
 
-		// var test = new Test();
-		// System.out.println("==========="+test.name);
-		// test.main();
-
-		var friend = new Friend("choi");
 	}
 
 }

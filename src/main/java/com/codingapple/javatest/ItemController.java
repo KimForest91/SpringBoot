@@ -8,6 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -22,9 +26,28 @@ public class ItemController {
         List<Item> result = itemRepository.findAll();
 
         var a = new Item();
-        System.out.println("=======================" + a.toString());
+        // System.out.println("=======================" + a.toString());
         model.addAttribute("items", result);
 
         return "list.html";
     }
+
+    @GetMapping("/write")
+    String write() {
+        return "write.html";
+    }
+
+    @PostMapping("/add")
+    String addPost(String title, Integer price) {
+        System.out.println("==================================");
+        System.out.println("title: " + title + " price: " + price);
+
+
+        Item item = new Item();
+        item.setTitle(title);
+        item.setPrice(price);
+        itemRepository.save(item);
+        return "redirect:/list";
+    }
+    
 }

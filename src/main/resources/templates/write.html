@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="/main.css">
 </head>
 <body>
-<form action="/add" method="POST">
-    <input type="text" name="title" placeholder="이름을쓰세요">
-    <input type="text" name="price" placeholder="가격을넣으세요">
-    <button type="submit">저장합니다?? 진짜로????????</button>
-</form>
+    <header>
+        <div th:replace="~{nav.html :: navbar}"></div> 
+    </header>
+    <main>
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="이름을쓰세요">
+            <input type="text" name="price" placeholder="가격을넣으세요">
+            <button type="submit">저장합니다?? 진짜로????????</button>
+        </form>
+    </main>
 </body>
 </html>

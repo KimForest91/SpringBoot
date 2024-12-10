@@ -5,10 +5,10 @@
 /* reset */
 
 html {line-height: 1.2; -webkit-text-size-adjust: 100%;}
-body {margin: 0;}
+body, header, main, pre, code, ul {margin: 0; padding: 0;}
 main {display: block;}
 * {box-sizing: border-box;}
-h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, table, blockquote, pre, code {margin: 0; padding: 0;}
+h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, table, blockquote,  
 h1, h2, h3, h4, h5, h6 {font-weight: 700;}
 a {color: inherit; text-decoration: inherit; background-color: transparent;}
 img {vertical-align: middle; max-width: 100%; border-style: none;}
@@ -20,6 +20,46 @@ i[class^="fa"] {position: relative; display: inline-block; vertical-align: middl
 i[class^="fa"] span {position: absolute; left: -9999px;}
 .hidden {position: absolute !important; left: -9999px !important;}
 
+main {
+    padding: 0 10px;
+}
+
+nav {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    font-family : 'Montserrat';
+}
+
+nav a {
+    margin-right: 10px;
+    text-decoration : none;
+    font-weight : 400;
+    letter-spacing : -0.5px;
+}
+
+nav .logo {
+    font-weight : 800;
+}
+
+input, button {
+    padding : 8px 13px;
+    margin-top : 5px;
+    border : 1px solid grey;
+    border-radius : 4px;
+    vertical-align : middle;
+}
+
+button {
+    background-color : #000;
+    color : #fff;
+    border : none;
+}
+
+input {
+    display : block;
+}
+
 .card > li {
     margin: 30px auto;
     display: flex;
@@ -28,36 +68,4 @@ i[class^="fa"] span {position: absolute; left: -9999px;}
 .card img {
     width: 150px;
     margin-right: 20px;
-}
-
-nav {
- display: flex;
- padding: 10px;
- align-items: center;
- font-family : 'Montserrat';
-}
-nav a {
- margin-right: 10px;
- text-decoration : none;
- font-weight : 400;
- letter-spacing : -0.5px;
-}
-nav .logo {
- font-weight : 800;
-}
-
-input, button {
- padding : 8px 13px;
- margin-top : 5px;
- border : 1px solid grey;
- border-radius : 4px;
- vertical-align : middle;
-}
-button {
- background : black;
- color : white;
- border : none;
-}
-input {
- display : block;
 }

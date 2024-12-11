@@ -69,3 +69,33 @@ input {
     width: 150px;
     margin-right: 20px;
 }
+
+.card .card-detail {
+    display: inline-box;
+}
+
+.detail {
+    text-align : center;
+}
+.detail img{
+    max-width : 30%;
+    display : block;
+    margin : auto;
+}
+
+.errorWrapper {
+    text-align : center;
+    margin-top : 20px;
+}
+
+.errorWrapper h4 {
+    font-size : 48px;
+}
+
+.errorWrapper p {
+    font-size : 32px;
+}
+
+.errorWrapper .err_status {
+    color : red;
+}

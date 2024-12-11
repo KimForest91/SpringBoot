@@ -2,7 +2,6 @@ package com.codingapple.javatest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 
 @SpringBootApplication
 public class JavatestApplication {
@@ -11,7 +10,6 @@ public class JavatestApplication {
 		SpringApplication.run(JavatestApplication.class, args);
 
 	}
-
 }
 
 class Test {

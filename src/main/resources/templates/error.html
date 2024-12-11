@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>error</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+    <header>
+        <div th:replace="~{nav.html :: navbar}"></div> 
+    </header>
+    <main>
+        <section>
+            <div class="errorWrapper">
+                <h4>에러페이지 뭔가 문제가 있음</h4>
+                <p th:text="${status}" class="err_status"></p>
+                <p th:text="${error}" class="error"></p>
+                <p th:text="${path}" class="err_path"></p>
+                <p th:text="${message}" class="err_message"></p>
+                <p th:text="${exception}" class="err_exception"></p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

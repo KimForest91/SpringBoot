@@ -1,17 +1,16 @@
 package com.codingapple.javatest;   // package 키워드로 패키지명을 지정해야 다른데서 해당 클래스를 사용할 수 있음
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 @RequiredArgsConstructor
@@ -20,7 +19,6 @@ public class ItemController {
 
     @GetMapping("/list")
     // @ResponseBody // 문자 그대로 보내주세요 라는 뜻
-
     String list(Model model) {
         List<Item> result = itemRepository.findAll();
 
@@ -49,4 +47,29 @@ public class ItemController {
         return "redirect:/list";
     }
     
+    @GetMapping("/detail/{id}")
+    String getDetail(@PathVariable Integer id, Model model) {
+        Optional<Item> item = itemRepository.findById((long) id);
+
+        if(item.isPresent()) {
+            model.addAttribute("item", item.get());
+            return "detail.html";
+        } else {
+            return "error.html";
+        }
+    }
+
+    /*
+    String getDetail(@PathVariable Integer id, Model model) {
+        Optional<Item> item = itemRepository.findById((long) id)
+            .ifPresent(item -> model.addAttribute("item", item.get()));
+
+        if(item.isPresent()) {
+            model.addAttribute("item", item.get());
+        }
+
+        return "detail.html";
+    }
+    */
+
 }

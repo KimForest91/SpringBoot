@@ -8,7 +8,7 @@ public class JavatestApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JavatestApplication.class, args);
-
+		System.out.println("==================================");
 	}
 }
 

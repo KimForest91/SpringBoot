@@ -5,9 +5,8 @@
 /* reset */
 
 html {line-height: 1.2; -webkit-text-size-adjust: 100%;}
-body, header, main, pre, code, ul {margin: 0; padding: 0;}
 main {display: block;}
-* {box-sizing: border-box;}
+* {box-sizing: border-box;  margin: 0; padding: 0;}
 h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, p, table, blockquote,  
 h1, h2, h3, h4, h5, h6 {font-weight: 700;}
 a {color: inherit; text-decoration: inherit; background-color: transparent;}
@@ -65,13 +64,32 @@ input {
     display: flex;
 }
 
+.card .card-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.edit_link {
+
+    margin-left: auto;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.detail_link {
+    width: 100%;
+}
+
 .card img {
     width: 150px;
     margin-right: 20px;
 }
 
 .card .card-detail {
-    display: inline-box;
+    display: inline-block;
+    width: calc(100% - 176px);
 }
 
 .detail {

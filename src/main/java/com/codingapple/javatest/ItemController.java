@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
     @GetMapping("/list")
     // @ResponseBody // 문자 그대로 보내주세요 라는 뜻
@@ -38,16 +39,27 @@ public class ItemController {
 
     @PostMapping("/add")
     String addPost(String title, Integer price) {
-        System.out.println("==================================");
-        
-        System.out.println("title: " + title + " price22222222222222: " + price);
-        System.out.println("title: " + title + " price: " + price);
-        Item item = new Item();
-        item.setTitle(title);
-        item.setPrice(price);
-        itemRepository.save(item);
+        itemService.saveItem(title, price);
+
         return "redirect:/list";
     }
+
+
+    @PostMapping("/edit")
+    String editItemString(Long id, String title, Integer price) {
+        itemService.updateItem(id, title, price);
+        return "redirect:/list";
+    }
+
+    @GetMapping("/update/{id}")
+    String updateItemString(@PathVariable Long id, Model model) {
+        List<Item> result = itemRepository.findAll();
+        model.addAttribute("id", id);
+        model.addAttribute("items", result);
+
+        return "update.html";
+    }
+
     
     @GetMapping("/detail/{id}")
     String getDetail(@PathVariable Integer id, Model model) {
@@ -57,30 +69,8 @@ public class ItemController {
         model.addAttribute("item", item);
         return "detail.html";
 
-        /* 
-        Optional<Item> item = itemRepository.findById((long) id);
-
-        if(item.isPresent()) {
-            model.addAttribute("item", item.get());
-            return "detail.html";
-        } else {
-            return "error.html";
-        } */
-        
     }
 
-
-    /*
-    String getDetail(@PathVariable Integer id, Model model) {
-        Optional<Item> item = itemRepository.findById((long) id)
-            .ifPresent(item -> model.addAttribute("item", item.get()));
-
-        if(item.isPresent()) {
-            model.addAttribute("item", item.get());
-        }
-
-        return "detail.html";
-    }
-    */
+    
 
 }

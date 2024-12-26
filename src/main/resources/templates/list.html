@@ -13,14 +13,18 @@
     <main>
         <ul class="card">
             <li th:each="item : ${items}">
-                <a th:href="@{/detail/{id}(id=${item.id})}">
-                    <img src="https://placehold.co/300">
-                    <div class="card-detail">
-                        <h4 th:text="${item.title}"></h4>
-                        <p th:text="${item.price}"></p>
-                    </div>
-                    <p> ㅎㅎㅎㅎ</p>
-                </a>
+                <div class="card-item">
+                    <a class="detail_link" th:href="@{/detail/{id}(id=${item.id})}">
+                        <img src="https://placehold.co/300">
+                        <div class="card-detail">
+                            <h4 th:text="${item.title}"></h4>
+                            <p th:text="${item.price}"></p>
+                        </div>
+                    </a>
+                    <p class="edit_link">
+                        <a th:href="@{/update/{id}(id=${item.id})}">✏️</a>
+                    </p>
+                </div>
             </li>
         </ul>
     </main>

@@ -1,0 +1,101 @@
+@charset 'utf-8';
+
+
+main {
+    padding: 0 10px;
+}
+
+nav {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    font-family : 'Montserrat';
+}
+
+nav a {
+    margin-right: 10px;
+    text-decoration : none;
+    font-weight : 400;
+    letter-spacing : -0.5px;
+}
+
+nav .logo {
+    font-weight : 800;
+}
+
+input, button {
+    padding : 8px 13px;
+    margin-top : 5px;
+    border : 1px solid grey;
+    border-radius : 4px;
+    vertical-align : middle;
+}
+
+button {
+    background-color : #000;
+    color : #fff;
+    border : none;
+}
+
+input {
+    display : block;
+}
+
+.card > li {
+    margin: 30px auto;
+    display: flex;
+}
+
+.card .card-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.edit_link {
+
+    margin-left: auto;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.detail_link {
+    width: 100%;
+}
+
+.card img {
+    width: 150px;
+    margin-right: 20px;
+}
+
+.card .card-detail {
+    display: inline-block;
+    width: calc(100% - 176px);
+}
+
+.detail {
+    text-align : center;
+}
+.detail img{
+    max-width : 30%;
+    display : block;
+    margin : auto;
+}
+
+.errorWrapper {
+    text-align : center;
+    margin-top : 20px;
+}
+
+.errorWrapper h4 {
+    font-size : 48px;
+}
+
+.errorWrapper p {
+    font-size : 32px;
+}
+
+.errorWrapper .err_status {
+    color : red;
+}

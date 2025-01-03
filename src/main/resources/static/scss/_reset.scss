@@ -1,0 +1,247 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+
+/* 페이지 레이아웃 */
+/*CSS 초기화*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-style: normal;
+    vertical-align: baseline;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system,
+        BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+article,
+aside,
+details,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+input[type='radio'] {
+    position: relative;
+    top: 2px;
+}
+
+input[type='checkbox'] {
+    position: relative;
+    top: 2px;
+    margin: 0;
+}
+
+.full_width_input {
+    /*서식폼에서 폭을 전체 차지 하는 인풋요소를 위한 공통 클래스*/
+    width: 97%;
+}
+
+.check_label {
+    margin: 0 10px 0 3px;
+}
+
+/*checkbox ,radio 용 라벨 설정*/
+.required_label span {
+    display: none;
+}
+
+/*필수 입력 요소 표시*/
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: '';
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+img {
+    border: 0;
+    vertical-align: top;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* 접근성 관련 숨김요소 */
+a.accesibility {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+a.accesibility:focus {
+    /*키보드 포커스시*/
+    position: static;
+    display: block;
+    width: 100%;
+    height: 25px;
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/*숨김요소*/
+.hidden {
+    visibility: hidden;
+    height: 0px !important;
+    overflow: hidden;
+}
+
+/*coForward 이름 단어 설정*/
+.coforward {
+    color: #0099d8;
+    font-style: normal;
+    font-weight: bold;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system,
+        BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+.coforward span {
+    color: #0850a0;
+    font-variant: small-caps;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system,
+        BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+.coforward_w {
+    color: #ffffff;
+    font-style: normal;
+    font-weight: bold;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system,
+        BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+.coforward_w span {
+    color: #ffffff;
+    font-variant: small-caps;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system,
+        BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+        'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+
+/*CSS 초기화 끝*/
+

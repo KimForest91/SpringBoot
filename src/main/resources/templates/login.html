@@ -3,18 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입하기</title>
+    <title>로그인</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+
 </head>
 <body>
     <header>
         <div th:replace="~{nav.html :: navbar}"></div> 
     </header>
-    <form action="/member" method="POST">
-        <input name="displayName" placeholder="이름">
+    <h1>로그인</h1>
+
+
+
+    <form action="/login" method="POST">
         <input name="username" placeholder="아이디">
         <input name="password" type="password" placeholder="password">
-        <button type="submit">전송</button>
-    </form> 
+
+        <div th:if="${param.error}">
+            <h4>아이디나 비번 틀림</h4>
+        </div> 
+        
+        <button type="submit">로그인하기</button>
+    </form>
+
+
 </body>
 </html>

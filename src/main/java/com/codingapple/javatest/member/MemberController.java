@@ -4,8 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 
+import lombok.RequiredArgsConstructor;
 
 
 @Controller
@@ -15,7 +16,12 @@ public class MemberController {
 
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Authentication auth) {
+
+        if (auth.isAuthenticated()){
+            return "redirect:/list";
+        }
+        
         return "register.html";
     }
 
@@ -38,4 +44,14 @@ public class MemberController {
     public String login() {
         return "login.html";
     }
+
+    @GetMapping("/mypage")
+    public String mypage(Authentication auth) {
+        System.out.println(auth);
+        System.out.println(auth.getName());
+        System.out.println(auth.isAuthenticated());
+        
+        return "mypage.html";
+    }
+    
 }

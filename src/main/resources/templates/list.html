@@ -11,6 +11,10 @@
         <div th:replace="~{nav.html :: navbar}"></div> 
     </header>
     <main>
+        <span sec:authorize="hasAuthority('일반유저')">특정권한이 있으면 보여주쇼</span>
+        <div sec:authorize="isAuthenticated()">
+            로그인된 사람만 보여주쇼
+        </div>
         <ul class="card">
             <li th:each="item : ${items}">
                 <div class="card-item">

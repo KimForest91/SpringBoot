@@ -5,14 +5,14 @@ main {
     padding: 0 10px;
 }
 
-nav {
+nav ul {
     display: flex;
     padding: 10px;
     align-items: center;
     font-family : 'Montserrat';
 }
 
-nav a {
+nav li a {
     margin-right: 10px;
     text-decoration : none;
     font-weight : 400;

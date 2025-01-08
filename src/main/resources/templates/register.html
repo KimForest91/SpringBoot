@@ -9,8 +9,9 @@
 <body>
     <header>
         <div th:replace="~{nav.html :: navbar}"></div> 
-    </header>
+    </header> 
     <form action="/member" method="POST">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> 
         <input name="displayName" placeholder="이름">
         <input name="username" placeholder="아이디">
         <input name="password" type="password" placeholder="password">

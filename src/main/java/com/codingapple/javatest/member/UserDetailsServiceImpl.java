@@ -21,6 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         var result = memberRepository.findByUsername(username);
+
         if (result.isEmpty()){
             throw new UsernameNotFoundException("그런 아이디 없음");
         }
@@ -29,7 +30,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("일반유저"));
 
+        var a = new CustomUser(user.getUsername(), user.getPassword(), authorities);
+        a.displayName = user.getDisplayName();
 
-        return new User(user.getUsername(), user.getPassword(), authorities);
+        return a;
+    }
+}
+
+class CustomUser extends User {
+    public Long id;
+    public String displayName;
+    public CustomUser(
+        String username, 
+        String password, 
+        List<GrantedAuthority> authorities 
+    ) {    
+        super(username, password, authorities);
     }
 }

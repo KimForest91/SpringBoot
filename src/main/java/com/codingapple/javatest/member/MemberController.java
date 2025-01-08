@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.security.core.Authentication;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
-
+    private final MemberRepository memberRepository;
 
     @GetMapping("/register")
     public String register(Authentication auth) {
@@ -47,11 +49,26 @@ public class MemberController {
 
     @GetMapping("/mypage")
     public String mypage(Authentication auth) {
+        CustomUser result = (CustomUser) auth.getPrincipal();
+        System.out.println(result.displayName);
+
+        /*         
         System.out.println(auth);
         System.out.println(auth.getName());
-        System.out.println(auth.isAuthenticated());
+        System.out.println(auth.isAuthenticated()); 
+        */
         
         return "mypage.html";
     }
+
+    @GetMapping("/user/1")
+    @ResponseBody
+    public Member getUser() {
+        var a = memberRepository.findById(1L);
+        var result = a.get();
+        
+        return result;
+    }
+    
     
 }

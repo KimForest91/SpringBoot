@@ -1,7 +1,7 @@
 <nav th:fragment="navbar">
     <ul>
         <li><a class="logo">SpringMall</a></li>
-        <li><a th:href="@{/list}">List</a></li>
+        <li><a th:href="@{/list/page/1}">List</a></li>
         <li><a th:href="@{/write}">Write</a></li>
         <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
         <li sec:authorize="isAuthenticated()">

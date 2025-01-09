@@ -23,16 +23,20 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.disable());
         http.authorizeHttpRequests((authorize) ->
-            authorize.requestMatchers("/**").permitAll()
+            authorize
+                .requestMatchers("/**").permitAll()
+                .anyRequest().authenticated()
         );
 
-        http.formLogin((formLogin) 
-                -> formLogin.loginPage("/login")
+        http.formLogin((formLogin) -> 
+            formLogin
+                .loginPage("/login")
                 .defaultSuccessUrl("/mypage", true)
+                .permitAll()
         );
 
         http.csrf(csrf -> csrf.csrfTokenRepository(csrfTokenRepository())
-            .ignoringRequestMatchers("/login")
+            .ignoringRequestMatchers("/login",  "/write", "/add")
         );
 
         http.logout( logout -> logout.logoutUrl("/logout") ); 

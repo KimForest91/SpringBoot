@@ -3,6 +3,8 @@ package com.codingapple.javatest.Item;   // package 키워드로 패키지명을
 import java.util.List;
 
 import org.springframework.ui.Model;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +18,23 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
 
-    @GetMapping("/list")
+/*     @GetMapping("/list")
     // @ResponseBody // 문자 그대로 보내주세요 라는 뜻
     String list(Model model) {
         List<Item> result = itemRepository.findAll();
 
         model.addAttribute("items", result);
         
+        return "list.html";
+    }  */
+
+    @GetMapping("/list/page/{page}")
+    String getListPage(Model model, @PathVariable Integer page) {
+        Page<Item> result = itemRepository.findPageBy(PageRequest.of(page-1, 2));
+
+        model.addAttribute("items", result.getContent());
+        model.addAttribute("totalPages", result.getTotalPages());
+        model.addAttribute("currentPage", page);
         return "list.html";
     }
 

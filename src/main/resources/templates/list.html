@@ -31,6 +31,18 @@
                 </div>
             </li>
         </ul>
+
+        <ol class="pagination">
+            <li>
+                <a th:href="@{/list/page/{page}(page=${currentPage - 1})}" th:if="${currentPage > 1}">이전</a>
+            </li>
+            <li th:each="page : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage == page} ? 'on'">                
+                <a th:href="@{/list/page/{page}(page=${page})}" th:text="${page}"></a>
+            </li>
+            <li>
+                <a th:href="@{/list/page/{page}(page=${currentPage + 1})}" th:if="${currentPage < totalPages}">다음</a>
+            </li>
+        </ol>
     </main>
 </body>
 </html>

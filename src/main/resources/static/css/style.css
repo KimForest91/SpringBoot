@@ -169,6 +169,10 @@ ol {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* 접근성 관련 숨김요소 */
 a.accesibility {
   position: absolute;
@@ -237,10 +241,10 @@ nav ul {
   align-items: center;
   font-family: "Montserrat";
 }
-
-nav li a {
+nav ul > li {
   margin-right: 10px;
-  text-decoration: none;
+}
+nav ul > li > a {
   font-weight: 400;
   letter-spacing: -0.5px;
 }
@@ -281,7 +285,6 @@ input {
 
 .edit_link {
   margin-left: auto;
-  text-decoration: none;
   font-weight: 400;
 }
 
@@ -324,4 +327,16 @@ input {
 
 .errorWrapper .err_status {
   color: red;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagination > li {
+  margin: 0 20px;
+}
+.pagination > li.on {
+  font-weight: 800;
 }/*# sourceMappingURL=style.css.map */

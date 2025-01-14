@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -33,18 +32,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         var a = new CustomUser(user.getUsername(), user.getPassword(), authorities);
         a.displayName = user.getDisplayName();
 
-        return a;
-    }
-}
-
-class CustomUser extends User {
-    public Long id;
-    public String displayName;
-    public CustomUser(
-        String username, 
-        String password, 
-        List<GrantedAuthority> authorities 
-    ) {    
-        super(username, password, authorities);
+        return (UserDetails) a;
     }
 }

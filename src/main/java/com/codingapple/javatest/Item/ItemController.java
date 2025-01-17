@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.codingapple.javatest.Comment.Comment;
 import com.codingapple.javatest.Comment.CommentRepository;
 
 
@@ -75,23 +76,19 @@ public class ItemController {
 
     @GetMapping("/detail/{id}")
     String getDetail(@PathVariable Long id, Model model) {
-        Item item = itemRepository.findById((long) id)
-            .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다."));
+        // 댓글 조회
+        List<Comment> comment =  commentRepository.findAllByItemId(id);
 
-        model.addAttribute("item", item);
-        return "detail.html";
-
-    }
-
-    @GetMapping("/detail/{id}")
-    String detail(@PathVariable Long id, Model model) {
-
-        commentRepository.findAllByParentId(1L);
-        
+        // 아이템 조회
         Optional<Item> result = itemRepository.findById(id);
 
+        System.out.println("comment=============" + comment);
+
         if (result.isPresent()) {
-            model.addAttribute("data", result.get());
+            Item item = result.get();
+            model.addAttribute("item", item);
+            model.addAttribute("comment", comment);
+            System.out.println("item=============" + item);
             return "detail.html";
         } else {
             return "redirect:/list";

@@ -21,25 +21,28 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf((csrf) -> csrf.disable());
-        http.authorizeHttpRequests((authorize) ->
-            authorize
-                .requestMatchers("/**").permitAll()
-                .anyRequest().authenticated()
-        );
-
-        http.formLogin((formLogin) -> 
-            formLogin
-                .loginPage("/login")
-                .defaultSuccessUrl("/mypage", true)
-                .permitAll()
-        );
-
-        http.csrf(csrf -> csrf.csrfTokenRepository(csrfTokenRepository())
-            .ignoringRequestMatchers("/login",  "/write", "/add")
-        );
-
-        http.logout( logout -> logout.logoutUrl("/logout") ); 
+        http
+            .csrf((csrf) -> csrf.disable())
+            .authorizeHttpRequests((authorize) ->
+                authorize
+                    .requestMatchers("/**").permitAll()
+                    .requestMatchers("/comment/**").authenticated()  // 댓글 기능은 인증 필요
+                    .anyRequest().authenticated()
+            )
+            .formLogin((formLogin) -> 
+                formLogin
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/mypage", true)
+                    .permitAll()
+            )
+            .csrf(csrf -> 
+                csrf
+                    .csrfTokenRepository(csrfTokenRepository())
+                    .ignoringRequestMatchers("/login",  "/write", "/add", "/comment", "detail")
+            )
+            .logout(logout -> 
+                logout.logoutUrl("/logout") 
+            ); 
         
         return http.build();
     }

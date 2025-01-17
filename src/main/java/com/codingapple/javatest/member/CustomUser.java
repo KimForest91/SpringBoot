@@ -1,9 +1,9 @@
 package com.codingapple.javatest.member;
 
 import java.util.Collection;
-
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
 
 public class CustomUser extends User {
     public String displayName;
@@ -13,6 +13,14 @@ public class CustomUser extends User {
         String password, 
         Collection<? extends GrantedAuthority> authorities
     ) {
-        super();
+        super(username, password, authorities);
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

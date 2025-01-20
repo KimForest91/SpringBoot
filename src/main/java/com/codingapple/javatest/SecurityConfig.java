@@ -38,7 +38,7 @@ public class SecurityConfig {
             .csrf(csrf -> 
                 csrf
                     .csrfTokenRepository(csrfTokenRepository())
-                    .ignoringRequestMatchers("/login",  "/write", "/add", "/comment", "detail")
+                    .ignoringRequestMatchers("/login",  "/write", "/add", "/comment", "/detail", "/search")
             )
             .logout(logout -> 
                 logout.logoutUrl("/logout") 

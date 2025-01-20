@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingapple.javatest.Comment.Comment;
 import com.codingapple.javatest.Comment.CommentRepository;
@@ -23,6 +24,7 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
     private final CommentRepository commentRepository;
+
 
     /*     
     @GetMapping("/list")
@@ -82,17 +84,49 @@ public class ItemController {
         // 아이템 조회
         Optional<Item> result = itemRepository.findById(id);
 
-        System.out.println("comment=============" + comment);
-
         if (result.isPresent()) {
             Item item = result.get();
             model.addAttribute("item", item);
             model.addAttribute("comment", comment);
-            System.out.println("item=============" + item);
             return "detail.html";
         } else {
             return "redirect:/list";
         }
+    }
 
+    // (value="name", required =false) 
+    @PostMapping("/search")
+    String postSearch(@RequestParam String searchText, Model model) {
+        System.out.println("searchText=============" + searchText);
+
+        int page = 1;
+        Page<Item> result = itemRepository.findByTitleContaining(
+            searchText, 
+            PageRequest.of(page-1, 2)
+        );
+        
+        model.addAttribute("items", result.getContent());
+        model.addAttribute("totalPages", result.getTotalPages());
+        model.addAttribute("currentPage", page);
+
+        return "list.html";
+    }
+
+    @GetMapping("/search/page/{page}")
+    String getSearchPage(
+        @RequestParam String searchText, 
+        @PathVariable Integer page,
+        Model model
+    ) {
+        Page<Item> result = itemRepository.findByTitleContaining (
+            searchText, 
+            PageRequest.of(page-1, 2)
+        );
+        
+        model.addAttribute("items", result.getContent());
+        model.addAttribute("totalPages", result.getTotalPages());
+        model.addAttribute("currentPage", page);
+        
+        return "list";
     }
 }

@@ -11,6 +11,11 @@
         <div th:replace="~{nav.html :: navbar}"></div> 
     </header>
     <main>
+        <form action="/search" method="POST">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <input type="text" name="searchText" placeholder="검색어를 입력하세요">
+            <button type="submit">검색</button>
+        </form>
         <span sec:authorize="hasAuthority('일반유저')">특정권한이 있으면 보여주쇼</span>
         <div sec:authorize="isAuthenticated()">
             로그인된 사람만 보여주쇼

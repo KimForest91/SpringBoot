@@ -31,4 +31,15 @@ public class BasicController {
         String stringDate = now.toString();
         return "<h1>접속시간: " + formattedDate + "</h1><h1>"+ stringDate +"</h1>";
     }
+/* 
+    @GetMapping("/hello")
+    @ResponseBody
+    public Hello 
+    static class Hello {
+        private String message = "Hello, World!";
+
+        public String getMessage() {
+            return message;
+        }
+    } */
 }

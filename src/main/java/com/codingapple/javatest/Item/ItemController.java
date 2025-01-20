@@ -6,16 +6,21 @@ import java.util.Optional;
 import org.springframework.ui.Model;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codingapple.javatest.Comment.Comment;
 import com.codingapple.javatest.Comment.CommentRepository;
+import com.codingapple.javatest.Sales.Sales;
+import com.codingapple.javatest.Sales.SalesRepository;
+import com.codingapple.javatest.member.CustomUser;
+import com.codingapple.javatest.member.Member;
 
 
 @Controller
@@ -24,6 +29,7 @@ public class ItemController {
     private final ItemRepository itemRepository;
     private final ItemService itemService;
     private final CommentRepository commentRepository;
+    private final SalesRepository salesRepository;
 
 
     /*     
@@ -129,4 +135,40 @@ public class ItemController {
         
         return "list";
     }
+
+    @PostMapping("/order")
+    String postOrder(
+        @RequestParam String title,
+        @RequestParam Integer price,
+        @RequestParam Integer count,
+        Authentication auth
+    ) {
+        Sales sales = new Sales();
+        sales.setItemName(title);
+        sales.setPrice(price);
+        sales.setCount(count);
+
+        CustomUser user = (CustomUser) auth.getPrincipal();
+
+        // member 컬럼에 데이터 추가하기 위해 member 객체 생성
+        var member = new Member();
+        member.setId(user.id);
+
+        // sales.setMemberId(user.id);
+        // 위의코드가 아래로 바뀜
+        sales.setMember(member);
+
+        salesRepository.save(sales);
+
+        return "list.html";
+    }
+
+    @GetMapping("/order/all")
+    String getOrderAll() {
+        List<Sales> result = salesRepository.findAll();
+
+
+        return "list.html";
+    }
+
 }

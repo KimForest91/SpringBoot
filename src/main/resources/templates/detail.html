@@ -39,6 +39,14 @@
                 <p>댓글을 작성하려면 <a href="/login">로그인</a>하세요.</p>
             </div>
         </section>
+        <section>
+            <form action="/order" method="post">
+                <input name="title" th:value="${data.title}">
+                <input name="price" th:value="${data.price}">
+                <input name="count" placeholder="count">
+                <button>주문하기</button>
+            </form>
+        </section>
     </main>
 </body>
 </html>

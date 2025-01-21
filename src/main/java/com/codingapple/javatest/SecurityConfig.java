@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -29,20 +30,23 @@ public class SecurityConfig {
                     .requestMatchers("/comment/**").authenticated()  // 댓글 기능은 인증 필요
                     .anyRequest().authenticated()
             )
-            .formLogin((formLogin) -> 
+            /* .formLogin((formLogin) -> 
                 formLogin
                     .loginPage("/login")
                     .defaultSuccessUrl("/mypage", true)
                     .permitAll()
-            )
+            ) */
             .csrf(csrf -> 
-                csrf
-                    .csrfTokenRepository(csrfTokenRepository())
-                    .ignoringRequestMatchers("/login",  "/write", "/add", "/comment", "/detail", "/search")
+                csrf.disable()
+                    /* .csrfTokenRepository(csrfTokenRepository())
+                    .ignoringRequestMatchers("/login",  "/write", "/add", "/comment", "/detail", "/search") */
             )
             .logout(logout -> 
                 logout.logoutUrl("/logout") 
-            ); 
+            );
+            http.sessionManagement((session) -> 
+                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            );
         
         return http.build();
     }
